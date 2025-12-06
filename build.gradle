@@ -12,3 +12,16 @@ repositories {
 dependencies {
     implementation 'com.google.code.gson:gson:2.13.2'
 }
+
+tasks.named('javadoc', Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+tasks.register('javadocJar', Jar) {
+    archiveClassifier.set('javadoc')
+    from javadoc
+}
+
+artifacts {
+    archives javadocJar
+}
